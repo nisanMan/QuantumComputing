@@ -1,0 +1,61 @@
+Phase Shift Gate
+
+
+
+ #############################
+ ### Author: GPT 4o
+ #############################
+
+
+Denoted as ( R(\phi) ), is a single-qubit gate that adds a specific phase shift ( \phi ) to the state of a qubit.
+
+It leaves the state |0⟩ unchanged: ( R(\phi) |0⟩ = |0⟩ ).
+It changes the state |1⟩ by adding a phase: ( R(\phi) |1⟩ = e^{i\phi} |1⟩ ), where ( e^{i\phi} ) is a complex number representing the phase shift.
+
+Matrix Representation: The Phase Shift Gate is represented by the following matrix:
+[
+R(\phi) = \begin{pmatrix}
+1 & 0 \
+0 & e^{i\phi}
+\end{pmatrix}
+]
+
+
+Run the Following using python:
+ 
+pip:
+pip install qiskit
+ 
+python:
+
+from qiskit import QuantumCircuit, Aer, execute
+from qiskit.visualization import plot_histogram
+import numpy as np
+
+# Create a quantum circuit with 1 qubit
+qc = QuantumCircuit(1)
+
+# Initialize the qubit to |1⟩ state
+qc.initialize([0, 1], 0)  # |1⟩
+
+# Apply Phase Shift Gate, phi = pi/2 (90 degrees)
+phi = np.pi / 2  # Phase shift
+qc.rz(phi, 0)  # Apply R(φ) gate
+
+# Measure the qubit
+qc.measure_all()
+
+# Draw the circuit
+print(qc.draw())
+
+# Execute the circuit on the qasm simulator
+backend = Aer.get_backend('qasm_simulator')
+shots = 1024
+result = execute(qc, backend, shots=shots).result()
+
+# Get the results and plot
+counts = result.get_counts()
+print("\nCounts:", counts)
+
+# Plot the result
+plot_histogram(counts)
