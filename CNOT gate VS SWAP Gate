@@ -1,0 +1,107 @@
+
+#############################
+### Author: GPT 4o
+#############################
+
+<b>CNOT Gate</b>
+
+operates on two qubits: a control qubit and a target qubit. The CNOT gate performs the following operation:
+
+If the control qubit is in the state |1⟩, the target qubit is flipped (i.e., if it is |0⟩, it becomes |1⟩, and vice versa).
+If the control qubit is in the state |0⟩, the target qubit remains unchanged.
+
+
+Run the Following using python:
+
+pip:
+pip install qiskit
+
+python:
+
+from qiskit import QuantumCircuit, Aer, execute
+from qiskit.visualization import plot_histogram
+
+# Create a quantum circuit with 2 qubits
+qc = QuantumCircuit(2)
+
+# Initialize the control qubit (qubit 0) to |1⟩ and target qubit (qubit 1) to |0⟩
+qc.x(0)  # Apply X gate to qubit 0 to set it to |1⟩
+
+# Apply CNOT gate (control qubit 0, target qubit 1)
+qc.cx(0, 1)
+
+# Add a measurement to see the final state
+qc.measure_all()
+
+# Draw the circuit
+print(qc.draw())
+
+# Execute the circuit on the qasm simulator
+backend = Aer.get_backend('qasm_simulator')
+shots = 1024
+result = execute(qc, backend, shots=shots).result()
+
+# Get the results and plot
+counts = result.get_counts()
+print("\nCounts:", counts)
+
+# Plot the results
+plot_histogram(counts)
+
+
+
+
+<b>SWAP Gate</b>
+
+A SWAP gate is another fundamental gate in quantum computing. It allows the exchange of states between two qubits. When the SWAP gate is applied, the states of the two qubits are swapped. 
+
+Run the Following using python:
+pip:
+pip install qiskit 
+
+
+python:
+
+from qiskit import QuantumCircuit, Aer, execute
+from qiskit.visualization import plot_histogram
+
+# Create a quantum circuit with 2 qubits
+qc = QuantumCircuit(2)
+
+# Initialize the qubits
+qc.x(0)  # Set qubit 0 to |1⟩
+
+# Apply SWAP gate to swap the two qubits
+qc.swap(0, 1)
+
+# Add measurements to see the final states
+qc.measure_all()
+
+# Draw the circuit
+print(qc.draw())
+
+# Execute the circuit on the qasm simulator
+backend = Aer.get_backend('qasm_simulator')
+shots = 1024
+result = execute(qc, backend, shots=shots).result()
+
+# Get the results and plot
+counts = result.get_counts()
+print("\nCounts:", counts)
+
+# Plot the results
+plot_histogram(counts)
+
+
+#############################################################
+CNOT Gate
+What it Does: Flips the second qubit (target) if the first qubit (control) is 1.
+Example: If the first qubit is 1 and the second is 0, after CNOT, the second will be 1.
+Purpose: Often used to create connections between qubits or "entanglement."
+
+SWAP Gate
+What it Does: Simply swaps the states of the two qubits.
+Example: If the first qubit is 0 and the second is 1, after SWAP, the first will be 1 and the second will be 0.
+Purpose: Used to change the order of qubits or move their states around in a circuit.
+In short, CNOT changes one qubit based on another, while SWAP just exchanges their positions.
+
