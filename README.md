@@ -1,6 +1,6 @@
 # Mathematical Foundations of Quantum Algorithms  
 
-This project provides the **mathematical foundation** for quantum algorithms and demonstrates basic usage of **Qiskit**. It covers key quantum mechanics principles, essential quantum gates, and fundamental quantum algorithms.  
+This project explores quantum algorithms through the lens of **Qiskit**, providing a foundation based on the **postulates of quantum mechanics**. It covers essential quantum gates, **massive quantum parallelism**, **entanglement and Bell states**, and fundamental quantum algorithms such as **quantum teleportation**.
 ***
 ### Table of Contents
 
