@@ -1,0 +1,98 @@
+#############################
+### Author: GPT 4o
+#############################
+
+Pauli Gates 
+
+Manipulate qubits, the basic units of quantum information.
+There are three main types of Pauli gates:
+
+Pauli-X Gate: This gate acts like a switch, flipping the qubit's state from |0⟩ to |1⟩ and vice versa.
+
+Pauli-Y Gate: The Y gate also flips the qubit but adds a special twist, turning |0⟩ into a complex version of |1⟩ and |1⟩ into a complex version of |0⟩.
+
+Pauli-Z Gate: This gate keeps the |0⟩ state unchanged while flipping the sign of the |1⟩ state, turning |1⟩ into -|1⟩.
+
+
+Run the Following using python:
+
+pip:
+pip install qiskit
+
+python:
+
+from qiskit import QuantumCircuit, Aer, execute
+from qiskit.visualization import plot_histogram
+
+# Create a quantum circuit with 1 qubit
+qc = QuantumCircuit(1)
+
+# Initialize the qubit to |0⟩
+qc.initialize([1, 0], 0)  # State |0⟩
+
+# Apply Pauli-X gate
+qc.x(0)  # Flip |0⟩ to |1⟩
+
+# Measure the qubit
+qc.measure_all()
+
+# Execute the circuit for X gate
+backend = Aer.get_backend('qasm_simulator')
+shots = 1024
+result_x = execute(qc, backend, shots=shots).result()
+counts_x = result_x.get_counts()
+
+# Print results of X gate
+print("X Gate Results:", counts_x)
+
+# Reset the circuit for Y gate
+qc = QuantumCircuit(1)
+qc.initialize([1, 0], 0)  # Reset to |0⟩
+
+# Apply Pauli-Y gate
+qc.y(0)  # Flip and twist
+
+# Measure the qubit
+qc.measure_all()
+
+# Execute the circuit for Y gate
+result_y = execute(qc, backend, shots=shots).result()
+counts_y = result_y.get_counts()
+
+# Print results of Y gate
+print("Y Gate Results:", counts_y)
+
+# Reset the circuit for Z gate
+qc = QuantumCircuit(1)
+qc.initialize([1, 0], 0)  # Reset to |0⟩
+
+# Apply Pauli-Z gate
+qc.z(0)  # Apply Z gate
+
+# Measure the qubit
+qc.measure_all()
+
+# Execute the circuit for Z gate
+result_z = execute(qc, backend, shots=shots).result()
+counts_z = result_z.get_counts()
+
+# Print results of Z gate
+print("Z Gate Results:", counts_z)
+
+# Plot the results
+import matplotlib.pyplot as plt
+
+# Plotting results for all gates
+plt.figure(figsize=(12, 4))
+
+plt.subplot(1, 3, 1)
+plot_histogram(counts_x, title='X Gate Results')
+
+plt.subplot(1, 3, 2)
+plot_histogram(counts_y, title='Y Gate Results')
+
+plt.subplot(1, 3, 3)
+plot_histogram(counts_z, title='Z Gate Results')
+
+plt.tight_layout()
+plt.show()
