@@ -2,7 +2,7 @@
 
 This project provides the **mathematical foundation** for quantum algorithms and demonstrates basic usage of **Qiskit**. It covers key quantum mechanics principles, essential quantum gates, and fundamental quantum algorithms.  
 ***
-## Table of Contents
+### Table of Contents
 
 #### Introduction:
 - Quantum Computing Notation
